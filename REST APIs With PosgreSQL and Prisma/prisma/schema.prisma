@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String?
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+}
+
+model Post {
+  id           String    @id @default(cuid())
+  title        String
+  description  String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade) // When user is deleted, so the posts are also deleted
+  userId       String
+  commentCount Int       @default(0)
+  comments     Comment[]
+  createdAt    DateTime  @default(now())
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  comment   String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade) // When post is deleted, so the comments are also deleted
+  postId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+}

@@ -19,6 +19,5 @@ This repository contains the projects and exercises I created using the PERN sta
 - **React**: Developing front-end components, managing states, and rendering dynamic content.  
 - **User Authentication**: Implementing secure authentication and authorization systems with JWT or OAuth.  
 - **CRUD Operations**: Creating, reading, updating, and deleting data from the PostgreSQL database.  
-- **Deployments**: Instructions and configurations for deploying the application.
 
 Feel free to let me know if you want any adjustments! 😊
